@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -76,6 +77,7 @@ href: "/projects/order-management",  },
 ];
 
 export default function ProjectsSection() {
+  const [isNavigating, setIsNavigating] = useState(false);
   return (
     <section id="projects" className="bg-bg-800 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -88,13 +90,13 @@ export default function ProjectsSection() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <Card key={project.title} className="flex flex-col">
+           <Card key={project.title} className="flex h-full flex-col">
               <div className="flex flex-1 flex-col">
-                <h3 className="mb-3 text-xl font-semibold text-foreground">
+               <h3 className="mb-3 min-h-[56px] text-xl font-semibold text-foreground">
                   {project.title}
                 </h3>
 
-                <p className="mb-4 text-foreground/60">
+                <p className="mb-4 flex-1 text-foreground/60">
                   {project.description}
                 </p>
 
@@ -115,10 +117,11 @@ export default function ProjectsSection() {
     Case Study Coming Soon
   </span>
 ) : (
-  <Link
-    href={project.href}
-    className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-gold-400 transition-colors hover:text-gold-300"
-  >
+ <Link
+  href={project.href}
+  onClick={() => setIsNavigating(true)}
+  className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-gold-400 transition-colors hover:text-gold-300"
+>
     View Case Study
     <ExternalLink size={16} />
   </Link>

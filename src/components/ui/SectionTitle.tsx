@@ -33,9 +33,14 @@ export function SectionTitle({
         {title}
       </h2>
       {description && (
-        <p className="max-w-2xl text-base leading-relaxed text-foreground/60 md:text-lg">
-          {description}
-        </p>
+       <p
+  className={cn(
+    "max-w-2xl text-base leading-relaxed text-foreground/60 md:text-lg",
+    align === "center" && "mx-auto"
+  )}
+>
+  {description}
+</p>
       )}
     </div>
   );
